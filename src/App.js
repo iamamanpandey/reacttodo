@@ -55,12 +55,12 @@ function App() {
     
 
       <TodoForm addTodo={addTodo} />
-     
-      {/* <div className="text-center m-2 p-3">
+     <h1>hello</h1>
+      <div className="text-center m-2 p-3">
       <button onClick={filterCompleteTodo}>CompleteTodo</button>
       <button onClick={filterInCompleteTodo}>InCompleteTodo</button>
       <button onClick={()=>setTodos(todos)}>All</button>
-      </div> */}
+      </div>
 
       {todos.map((todo, id) => (
         <TodoList
@@ -69,8 +69,6 @@ function App() {
           completeTodo={completeTodo}
           removeTodo={removeTodo}
           todo={todo}
-          filtercompleteTodo={filterCompleteTodo}
-          filterInCompleteTodo={filterInCompleteTodo}
         />
       ))}
     </div>
