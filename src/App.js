@@ -18,7 +18,9 @@ function App() {
       isCompleted:false
     },
   ]);
-  
+
+  const[filterTodo, setFilterTodo] = useState([...todos])
+
 
   const addTodo = (task) => {
     setTodos([...todos, { task }]);
@@ -32,17 +34,20 @@ function App() {
   };  
 
    const filterCompleteTodo =()=>{
-     const completedTodo= todos.filter((item)=>{
+     const completedTodo= filterTodo.filter((item)=>{
        return item.isCompleted===true
       })
-      setTodos(completedTodo)
+      setFilterTodo(completedTodo)
+    console.log(completedTodo)
+
    }
 
    const filterInCompleteTodo =(id)=>{
-   const inCompletedTodo =todos.filter((item)=>{
+   const inCompletedTodo =filterTodo.filter((item)=>{
       return item.isCompleted ===false
     })
-    setTodos(inCompletedTodo)
+    setFilterTodo(inCompletedTodo)
+    console.log(inCompletedTodo)
   }
 
   const removeTodo = (id) => {
@@ -59,7 +64,6 @@ function App() {
       <div className="text-center m-2 p-3">
       <button onClick={filterCompleteTodo}>CompleteTodo</button>
       <button onClick={filterInCompleteTodo}>InCompleteTodo</button>
-      <button onClick={()=>setTodos(todos)}>All</button>
       </div>
 
       {todos.map((todo, id) => (
