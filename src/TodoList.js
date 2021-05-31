@@ -9,7 +9,7 @@ const TodoList = ({ todo, id, completeTodo,removeTodo }) => {
           <li
             style={{ background: todo.isCompleted && "#90EE90" }}
             className="list-group-item d-flex justify-content-between align-items-center"
-          ><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={()=>completeTodo(id)}  />
+         ><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={()=>completeTodo(id)}  />
             {todo.task}
              <div className="p-1"> 
 
