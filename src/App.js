@@ -7,48 +7,51 @@ function App() {
   const [todos, setTodos] = useState([
     {
       task: "Learn Reactjs today",
-      isCompleted:false
+      isCompleted: false,
     },
     {
       task: "Learn Nodejs today",
-      isCompleted:false
+      isCompleted: false,
     },
     {
       task: "Learn Mongodb today",
-      isCompleted:false
+      isCompleted: false,
     },
   ]);
 
-  const[filterTodo, setFilterTodo] = useState([...todos])
-
+  const [value, setvalue] = useState();
+  const [filtertodos, setfilterTodos] = useState([...todos]);
 
   const addTodo = (task) => {
-    setTodos([...todos, { task }]);
+    setTodos([...todos, { task, isCompleted: false }]);
+     setfilterTodos([...todos]);
+    
   };
 
+
+  const handlefilterChange = (e) => {
+    setvalue(e.target.value);
+    const filtertodo=
+      todos.filter((todo) => {
+        switch (e.target.value) {
+          case "All":
+            return todo;
+          case "Completed":
+            return todo.isCompleted === true;
+          case "Incompleted":
+            return todo.isCompleted === false;
+          default:
+            return todos;
+        }
+      })
+    setfilterTodos(filtertodo)
+  };
 
   const completeTodo = (id) => {
     const newTodos = [...todos];
     newTodos[id].isCompleted = !newTodos[id].isCompleted;
     setTodos(newTodos);
-  };  
-
-   const filterCompleteTodo =()=>{
-     const completedTodo= filterTodo.filter((item)=>{
-       return item.isCompleted===true
-      })
-      setFilterTodo(completedTodo)
-    console.log(completedTodo)
-
-   }
-
-   const filterInCompleteTodo =(id)=>{
-   const inCompletedTodo =filterTodo.filter((item)=>{
-      return item.isCompleted ===false
-    })
-    setFilterTodo(inCompletedTodo)
-    console.log(inCompletedTodo)
-  }
+  };
 
   const removeTodo = (id) => {
     setTodos(todos.filter((todo, index) => index !== id));
@@ -57,16 +60,18 @@ function App() {
   return (
     <div className="App">
       <h1 className="text-center my-5">Todo List</h1>
-    
 
       <TodoForm addTodo={addTodo} />
-     <h1>hello</h1>
-      <div className="text-center m-2 p-3">
-      <button onClick={filterCompleteTodo}>CompleteTodo</button>
-      <button onClick={filterInCompleteTodo}>InCompleteTodo</button>
-      </div>
+      <div className="text-center">
+      <select onChange={handlefilterChange} value={value} className="mx-auto">
+        <option value="All">All</option>
+        <option value="Completed">Completed</option>
+        <option value="Incompleted">Incompleted</option>
+      </select>
 
-      {todos.map((todo, id) => (
+    <p >{filtertodos.length}</p>
+    </div>
+      {filtertodos.map((todo, id) => (
         <TodoList
           key={id}
           id={id}
@@ -75,6 +80,7 @@ function App() {
           todo={todo}
         />
       ))}
+      <h1 className="text-center">second</h1>
     </div>
   );
 }

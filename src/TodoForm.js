@@ -11,7 +11,6 @@ const TodoForm = ({ addTodo }) => {
     addTodo(value);
     setValue("");
   };
-
   return (
     <div className="text-center pt-4">
       <h4>Enter your todo list</h4>
@@ -27,6 +26,7 @@ const TodoForm = ({ addTodo }) => {
           />
         </div>
       </form>
+
     </div>
   );
 };

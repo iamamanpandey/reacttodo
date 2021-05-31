@@ -7,7 +7,7 @@ const TodoList = ({ todo, id, completeTodo,removeTodo }) => {
       <div className="row">
         <ul className="list-group">
           <li
-            style={{ background: todo.isCompleted && "#90EE90" }}
+            style={{ textDecoration: todo.isCompleted && " line-through" }}
             className="list-group-item d-flex justify-content-between align-items-center"
          ><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={()=>completeTodo(id)}  />
             {todo.task}
