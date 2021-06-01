@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const TodoForm = ({ addTodo }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(" ");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,19 +12,17 @@ const TodoForm = ({ addTodo }) => {
     setValue("");
   };
   return (
-    <div className="text-center pt-4">
-      <h4>Enter your todo list</h4>
+    <div className="w-100">
       <form onSubmit={handleSubmit}>
-        <div>
+       
           <input
             type="text"
-            placeholder="Add todos.."
+            placeholder="what needs to be done..."
             onChange={(e) => setValue(e.target.value)}
             value={value}
-            className=" container-fluid my-2 p-2" 
-            style={{width:'24%',marginLeft:'-1%'}}
+            className=" container-fluid my-2 py-4 input border-bottom" 
           />
-        </div>
+       
       </form>
 
     </div>

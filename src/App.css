@@ -1,3 +1,21 @@
-body{
-  background-color: #f1f1ff;
+body {
+  background-color: #f5f5f5;
+}
+
+.input {
+  border: 0;
+  outline: 0;
+
+}
+
+.input:focus {
+  outline: none !important
+}
+.round {
+  position: relative;
+}
+
+
+.Tab {
+  list-style: none;
 }
