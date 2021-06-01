@@ -5,7 +5,6 @@ body {
 .input {
   border: 0;
   outline: 0;
-
 }
 
 .input:focus {
@@ -63,21 +62,17 @@ body {
 .btn1 {
   border: none;
   background: none;
-  text-align: center;
-  font-family: sans-serif;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
   cursor: pointer;
+  padding: 1px;
 }
 
 .container {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  padding-left: 30px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   cursor: pointer;
-  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

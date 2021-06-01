@@ -12,7 +12,6 @@ function App() {
     },
   ]);
 
-  const [color, setcolor] = useState()
 
   const [value, setvalue] = useState();
   const [filtertodos, setfilterTodos] = useState([...todos]);
@@ -72,13 +71,12 @@ function App() {
             fontSize: "100px",
             fontWeight: "400",
           }}
-        >
-          todos
+        >todos
         </h1>
       </div>
       <div
         class="card mx-auto shadow-lg"
-        style={{ width: "35%", backgroundColor: "#ffff" }}
+        style={{ width: "30%", backgroundColor: "#ffff" }}
       >
         <div>
           <TodoForm addTodo={addTodo} />
@@ -93,7 +91,7 @@ function App() {
               />
             ))}
           </ul>
-          <div className="d-flex my-2 justify-content-between">
+          <div className="d-flex my-2 justify-content-between border-top">
             <p
               className="my-3"
               style={{
@@ -131,6 +129,7 @@ function App() {
                 color: "#4d4d4d",
                 fontFamily: "sans-serif",
               }}
+              
             >
               Clear completed
             </button>

@@ -20,7 +20,7 @@ const TodoForm = ({ addTodo }) => {
             placeholder="what needs to be done..."
             onChange={(e) => setValue(e.target.value)}
             value={value}
-            className=" container-fluid my-2 py-4 input border-bottom" 
+            className=" container-fluid  py-4 input border-bottom" 
           />
        
       </form>

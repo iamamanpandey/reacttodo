@@ -3,12 +3,12 @@ import React,{useState} from "react";
 const TodoList = ({ todo, id, completeTodo,removeTodo }) => {
   const [style, setStyle] = useState({display: 'none'});
  return (
-    <div className="border-bottom">
+    <div className="border-top">
 
         <ul className="list-group">
           <li
             style={{ textDecoration: todo.isCompleted && "line-through",opacity:todo.isCompleted &&'0.5' }}
-            className="list-group-item d-flex  justify-content-between align-items-center input mx-2"
+            className="list-group-item d-flex  justify-content-between align-items-center input mx-1 mt-2"
             onMouseEnter={e => {
               setStyle({display: 'block'});
           }}
