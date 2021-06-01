@@ -12,12 +12,14 @@ function App() {
     },
   ]);
 
+  const [color, setcolor] = useState()
+
   const [value, setvalue] = useState();
   const [filtertodos, setfilterTodos] = useState([...todos]);
 
   var trueCount = 0;
-  var  falseCount = 0;
-  filtertodos.forEach((i)=> {
+  var falseCount = 0;
+  filtertodos.forEach((i) => {
     i.isCompleted === true ? trueCount++ : falseCount++;
   });
 
@@ -33,7 +35,7 @@ function App() {
           return todo;
         case "Completed":
           return todo.isCompleted === true;
-        case "Incompleted":
+        case "Active":
           return todo.isCompleted === false;
         default:
           return todos;
@@ -48,15 +50,10 @@ function App() {
     setfilterTodos(newTodos);
   };
 
-    // const allSelect = () => {
-    //   const newTodos = filtertodos.map((todo) => todo.isCompleted === true)
-    //   console.log(newTodos)
-    //   setTodos
-    // };
-
-
   const removeTodo = (id) => {
-    setfilterTodos(filtertodos.filter((todo, index) => index !== id));
+    const newTodos = filtertodos.filter((todo, index) => index !== id);
+    setTodos(newTodos);
+    setfilterTodos(newTodos);
   };
 
   const clearCompletedTodo = () => {
@@ -65,13 +62,24 @@ function App() {
     setfilterTodos(newTodos);
   };
 
-
   return (
     <div className="App mx-auto">
       <div className="text-center " style={{ marginTop: "3%" }}>
-        <h1  style={{ color: "#EBDBDB", fontFamilyL: "Helvetica", fontSize: "100px",fontWeight: "400",}}> todos</h1>
+        <h1
+          style={{
+            color: "#EBDBDB",
+            fontFamilyL: "Helvetica",
+            fontSize: "100px",
+            fontWeight: "400",
+          }}
+        >
+          todos
+        </h1>
       </div>
-      <div class="card mx-auto shadow-lg" style={{ width: "35%" }}>
+      <div
+        class="card mx-auto shadow-lg"
+        style={{ width: "35%", backgroundColor: "#ffff" }}
+      >
         <div>
           <TodoForm addTodo={addTodo} />
           <ul class="list-group list-group-flush">
@@ -86,49 +94,46 @@ function App() {
             ))}
           </ul>
           <div className="d-flex my-2 justify-content-between">
-            <h4 className="my-3" style={{marginLeft:'3%',fontSize:'20px',color:'#4d4d4d',fontFamily:'sans-serif'}}>{falseCount} left</h4>
+            <p
+              className="my-3"
+              style={{
+                marginLeft: "3%",
+                fontSize: "16px",
+                color: "#4d4d4d",
+                fontFamily: "sans-serif",
+              }}
+            >
+              {falseCount} items left
+            </p>
             <div
-              class="btn-group btn-group-toggle p-2"
+              class="btn-group btn-group-toggle "
               data-toggle="buttons"
-              onChange={handlefilterChange}
+              onClick={handlefilterChange}
               value={value}
             >
-              <label class="btn btn-outline-primary  mx-2" value="All">
-                <input
-                  type="radio"
-                  name="options"
-                  id="option1"
-                  autocomplete="off"
-                  value="All"
-                />
-                All
-              </label>
-             
-              <label class="btn btn-outline-danger mx-2">
-                <input
-                  type="radio"
-                  name="options"
-                  id="option3"
-                  autocomplete="off"
-                  value="Incompleted"
-                />
-                Active
-              </label>
-              <label class="btn btn-outline-success  mx-2" value="Completed">
-                <input
-                  type="radio"
-                  name="options"
-                  id="option2"
-                  autocomplete="off"
-                  value="Completed"
-                />
-                Completed
-              </label>
+            <div class="my-2"  aria-label="Basic example" onClick={handlefilterChange}
+              value={value}>
+        <button type="button" class="btnn  " value="All" tabindex="1" activeClassName="active" >All</button>
+       <button type="button" class=" btnn  mx-1" value="Active" tabindex="2">Active</button>
+      <button type="button" class=" btnn  "  value="Completed" tabindex="3">Completed</button>
+</div>
+      
             </div>
-            <button type="button" class="btn btn-link"
-             onClick={clearCompletedTodo} > Clear completed
+
+            <button
+              type="button"
+              class="btn1 "
+              onClick={clearCompletedTodo}
+              style={{
+                marginLeft: "1%",
+                marginRight:'3%',
+                fontSize: "16px",
+                color: "#4d4d4d",
+                fontFamily: "sans-serif",
+              }}
+            >
+              Clear completed
             </button>
-          
           </div>
         </div>
       </div>
