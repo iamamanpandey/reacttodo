@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
-
+import {Tab,Tabs} from 'react-bootstrap';
 import TodoForm from "./TodoForm";
 import "./App.css";
 
@@ -28,16 +28,17 @@ function App() {
   };
 
   const handlefilterChange = (e) => {
+    console.log(e.target.value)
     const filtertodo = todos.filter((todo) => {
       switch (e.target.value) {
         case "All":
-          return todo;
+          return todo ;
         case "Completed":
           return todo.isCompleted === true;
         case "Active":
           return todo.isCompleted === false;
         default:
-          return todos;
+          return todo;
       }
     });
     setfilterTodos(filtertodo);
@@ -60,6 +61,10 @@ function App() {
     setTodos(newTodos);
     setfilterTodos(newTodos);
   };
+
+  const handleTabs =(e)=>{
+ console.log(e.target.value)
+  } 
 
   return (
     <div className="App mx-auto">
@@ -109,30 +114,22 @@ function App() {
               onClick={handlefilterChange}
               value={value}
             >
-            <div class="my-2"  aria-label="Basic example" onClick={handlefilterChange}
-              value={value}>
-        <button type="button" class="btnn  " value="All" tabindex="1" activeClassName="active" >All</button>
-       <button type="button" class=" btnn  mx-1" value="Active" tabindex="2">Active</button>
-      <button type="button" class=" btnn  "  value="Completed" tabindex="3">Completed</button>
-</div>
+            <div class="my-2"  aria-label="Basic example" onClick={handlefilterChange}  value={value}>
+             <button type="button" class="btnn" value="All" tabindex="1" activeClassName="active">All</button>
+             <button type="button" class=" btnn  mx-1" value="Active" tabindex="2">Active</button>
+             <button type="button" class=" btnn  "  value="Completed" tabindex="3">Completed</button>
+            </div>
       
             </div>
-
-            <button
-              type="button"
-              class="btn1 "
-              onClick={clearCompletedTodo}
-              style={{
+          
+            <a class="nav-item nav-link btn1" style={{
                 marginLeft: "1%",
                 marginRight:'3%',
+                marginTop:'2%',
                 fontSize: "16px",
                 color: "#4d4d4d",
                 fontFamily: "sans-serif",
-              }}
-              
-            >
-              Clear completed
-            </button>
+              }}   onClick={clearCompletedTodo}>Clear completed</a>
           </div>
         </div>
       </div>
