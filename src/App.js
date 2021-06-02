@@ -76,7 +76,7 @@ const handlefilterChange = (e) => {
       </div>
       <div
         class="card mx-auto shadow-lg"
-        style={{ width: "30%", backgroundColor: "#ffff" }}
+        style={{ width: "32%", backgroundColor: "#ffff" }}
         >
           <TodoForm addTodo={addTodo} />
            <ul class="list-group list-group-flush">
@@ -90,9 +90,11 @@ const handlefilterChange = (e) => {
               />
             ))}
           </ul>
-          <div className="d-flex my-2 justify-content-between ">
+          <div className="d-flex my-3 justify-content-between ">
+            
             <p className="my-3" style={{   marginLeft: "3%",  fontSize: "14px",  color: "#4d4d4d",  fontFamily: "sans-serif",}}>
               {falseCount} items left </p>  
+
               <div class="my-2" onClick={handlefilterChange}>  
                 <button  value="All"       className={value === 'All' ? 'active' : 'btnn'}       onClick={() => setvalue('All')}> All </button>
                 <button  value="Active"    className={value === 'Active' ? 'active' : 'btnn'}    onClick={() => setvalue('Active')}>  Active </button>
