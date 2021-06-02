@@ -9,9 +9,7 @@ const TodoList = ({ todo, id, completeTodo, removeTodo }) => {
           <button className="button" onClick={() => completeTodo(id)}>
             {todo.isCompleted ? "Completed" : "Complete"}
           </button>
-          <button className="button" onClick={() => removeTodo(id)}>
-            X
-          </button>
+          <button className="button" onClick={() => removeTodo(id)}> X  </button>
         </span>
       </li>
     </ul>
