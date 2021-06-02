@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import "./App.css";
@@ -11,25 +11,17 @@ function App() {
     },
   ]);
 
-  const [value, setvalue] = useState("All");
   const [filtertodos, setfilterTodos] = useState([...todos]);
-
-  //for items left
-  var trueCount = 0;
-  var falseCount = 0;
-  filtertodos.forEach((i) => {
-    i.isCompleted === true ? trueCount++ : falseCount++;
-  });
+  const [value, setvalue] = useState("All");
 
   const addTodo = (task) => {
     setTodos([...todos, { task, isCompleted: false }]);
     setfilterTodos([...todos, { task, isCompleted: false }]);
   };
 
-const handlefilterChange = (e) => {
-    console.log(e.target.value)
+const handlefilterChange = (val) => {
     const filtertodo = todos.filter((todo) => {
-      switch (e.target.value) {
+      switch (val){
         case "All":
           return todo;
         case "Completed":
@@ -37,17 +29,18 @@ const handlefilterChange = (e) => {
         case "Active":
           return todo.isCompleted === false;
         default:
-          return todo.length;
+          return todo;
       }
     });
     setfilterTodos(filtertodo);
   };
 
-  const completeTodo = (id) => {
+const completeTodo = (id) => {
     const newTodos = [...filtertodos];
-    newTodos[id].isCompleted = !newTodos[id].isCompleted;
-    setfilterTodos(newTodos);
-  };
+     newTodos[id].isCompleted = !newTodos[id].isCompleted;
+     setfilterTodos(newTodos);
+     handlefilterChange(value)
+};
 
   const removeTodo = (id) => {
     const newTodos = filtertodos.filter((todo, index) => index !== id);
@@ -59,7 +52,15 @@ const handlefilterChange = (e) => {
     const newTodos = todos.filter((todo) => todo.isCompleted === false);
     setTodos(newTodos);
     setfilterTodos(newTodos);
+    handlefilterChange(value)
   };
+
+  // for items left
+  var trueCount = 0;
+  var falseCount = 0;
+  filtertodos.forEach((i) => {
+    i.isCompleted === true ? trueCount++ : falseCount++;
+  });
 
   return (
     <div className="App mx-auto">
@@ -90,18 +91,15 @@ const handlefilterChange = (e) => {
               />
             ))}
           </ul>
-          <div className="d-flex my-3 justify-content-between ">
-            
+          <div className="d-flex justify-content-between ">  
             <p className="my-3" style={{   marginLeft: "3%",  fontSize: "14px",  color: "#4d4d4d",  fontFamily: "sans-serif",}}>
               {falseCount} items left </p>  
-
-              <div class="my-2" onClick={handlefilterChange}>  
+              <div class="my-2 " onClick={(e)=>handlefilterChange(e.target.value)} style={{marginRight:'-5%'}}>  
                 <button  value="All"       className={value === 'All' ? 'active' : 'btnn'}       onClick={() => setvalue('All')}> All </button>
                 <button  value="Active"    className={value === 'Active' ? 'active' : 'btnn'}    onClick={() => setvalue('Active')}>  Active </button>
                 <button  value="Completed" className={value === 'Completed' ? 'active' : 'btnn'} onClick={() => setvalue('Completed')} > Completed </button>
               </div>
-
-            <a class="nav-item nav-link btn1" style={{ marginLeft: "1%",marginRight: "3%", marginTop: "1%", fontSize: "14px", color: "#4d4d4d", fontFamily: "sans-serif",}}
+            <a class="nav-item nav-link btn1" style={{ marginLeft: "1%",marginRight: "1%", marginTop: "1%", fontSize: "14px", color: "#4d4d4d", fontFamily: "sans-serif",}}
               onClick={clearCompletedTodo}
              > Clear completed
             </a> 
