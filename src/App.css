@@ -19,17 +19,6 @@ body {
   list-style: none;
 }
 
-.checkbox-round {
-  width: 1.3em;
-  height: 1.3em;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid #dddd;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
 
 .checkbox-round:checked {
   background-color: green;
@@ -46,17 +35,30 @@ body {
   text-decoration: underline;
 }
 
-.btnn {
+.btnn  {
   border: none;
   background: none;
-  color: #4d4d4d;
-  padding: 10px;
+  padding: 3px 7px;
+  margin: 3px;
+  color: "#4d4d4d";
   text-align: center;
+  display: inline-block;
   font-family: sans-serif;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
+}
+
+.active{
+  border: none;
+  background: none;
+  padding: 3px 7px;
+  color: "#4d4d4d";
+  display: inline-block;
+  font-size: 14px;
+  margin:3px;
+  cursor: pointer;
+  border:1px solid #EBDBDB;
 }
 
 
@@ -88,7 +90,6 @@ body {
   position: absolute;
   top: 15%;
   left: -2%;
-  
   border-radius:50%;
   height: 30px;
   width: 30px;
@@ -130,3 +131,5 @@ body {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+
