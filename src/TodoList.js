@@ -1,7 +1,9 @@
 import React,{useState} from "react";
 
 const TodoList = ({ todo, id, completeTodo,removeTodo }) => {
+  
   const [style, setStyle] = useState({display: 'none'});
+  
  return (
     <div className="border-top">
 
