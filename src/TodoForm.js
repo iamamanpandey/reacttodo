@@ -8,8 +8,8 @@ const TodoForm = ({ addTodo }) => {
     if (!value) {
       return null;
     }
-    addTodo(value);
-    setValue("");
+    addTodo(value)
+    setValue("")
   };
   return (
     <div className="w-100">
