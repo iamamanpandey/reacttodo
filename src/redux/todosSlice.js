@@ -30,12 +30,14 @@ export const todosSlice = createSlice({
         }
         return todo;
       });
-    }
-       
+    },
 
+    clearCompletedTodo:(state,action) =>{
+     state.todos = action.payload
+    },
   }, 
 });
 
-export const { setTodos, addTodos, removeTodo, completeTodo } =  todosSlice.actions;
+export const { setTodos, addTodos, removeTodo, completeTodo ,clearCompletedTodo} =  todosSlice.actions;
 
 export default todosSlice.reducer;

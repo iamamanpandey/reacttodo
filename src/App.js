@@ -3,6 +3,7 @@ import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 import { useSelector,useDispatch } from "react-redux";
 import "./App.css";
+import { clearCompletedTodo } from "./redux/todosSlice";
 
 function App() {
 
@@ -33,12 +34,11 @@ function App() {
     setfilterTodos(filtertodo);
   };
 
-  const clearCompletedTodo = () => {
-    const newTodos = todos.filter((todo) => todo.isCompleted === false);
-    setfilterTodos(newTodos);
-    handlefilterChange(value);
+  const clearcompletedTodo = () => {
+    const newTodos = todos.filter((todo)=>todo.isCompleted===false) 
+   dispatch(clearCompletedTodo(newTodos))
+   handlefilterChange(value)
   };
-
 
   // for items left
   var trueCount = 0;
@@ -113,7 +113,7 @@ function App() {
               Completed{" "}
             </button>
           </div>
-          <a
+          <button
             class="nav-item nav-link btn1"
             style={{
               marginLeft: "1%",
@@ -123,10 +123,10 @@ function App() {
               color: "#4d4d4d",
               fontFamily: "sans-serif",
             }}
-            onClick={()=>clearCompletedTodo()}
-            href
+            onClick={clearcompletedTodo}
+          
           > Clear completed
-          </a>
+          </button>
         </div>
       </div>
     </div>
