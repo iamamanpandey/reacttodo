@@ -3,18 +3,18 @@ import * as uuid from "uuid";
 
 export const todosSlice = createSlice({
   name: "todos",
+
   initialState: {
     todos: [{ id: uuid.v4(), task: "first task", isCompleted: true }],
   },
 
   reducers: {
     setTodos: (state, { payload }) => {
-      state = payload;
+       state= payload
     },
 
     addTodos: (state, { payload }) => {
       state.todos.push({ id: uuid.v4(), task: payload, isCompleted: false });
-      console.log(state.todos.id);
     },
 
     removeTodo: (state, { payload }) => {
@@ -23,7 +23,6 @@ export const todosSlice = createSlice({
         state.todos.splice(index, 1);
       }
     },
-
     completeTodo: (state, { payload }) => {
       state.todos.map((todo) => {
         if (todo.id === payload) {
@@ -31,13 +30,9 @@ export const todosSlice = createSlice({
         }
         return todo;
       });
-    },
-    clearCompleteTodo:(state,{payload})=>{
-      state.todos.map((todo)=>{
-
-      })
-
     }
+       
+
   }, 
 });
 

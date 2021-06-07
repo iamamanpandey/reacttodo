@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodos } from "./redux/todosSlice";
+import { addTodos } from "../redux/todosSlice";
 
 const TodoForm = () => {
   const [value, setValue] = useState(" ");
@@ -11,7 +11,7 @@ const TodoForm = () => {
     if (!value) {
       return null;
     }
-    
+
     dispatch(addTodos(value));
     setValue("");
   };
