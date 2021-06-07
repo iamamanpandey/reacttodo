@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
-import {useSelector} from 'react-redux';
-import {setTodos} from './redux/todosSlice';
+import { useSelector,useDispatch } from "react-redux";
+import { setTodos } from "./redux/todosSlice";
 import "./App.css";
 
 function App() {
-  const {todos} = useSelector(state => state.todos)
-
-
-  useEffect(() => {
-    handlefilterChange(value);
-  }, [todos]);
-  
-
+  const { todos } = useSelector((state) => state.todos);
+  const dispatch = useDispatch()
   const [filtertodos, setfilterTodos] = useState([...todos]);
+  
   const [value, setvalue] = useState(" ");
 
-
   const handlefilterChange = (val) => {
-    
-    const filtertodo = todos.filter((todo) => {
+    const filtertodo = filtertodos.filter((todo) => {
       switch (val) {
         case "All":
           return todo;
@@ -32,20 +25,18 @@ function App() {
           return todo;
       }
     });
-    setfilterTodos(filtertodo);
+    setTodos(filtertodo);
   };
 
   const clearCompletedTodo = () => {
     const newTodos = todos.filter((todo) => todo.isCompleted === false);
-    setTodos(newTodos);
-    setfilterTodos(newTodos);
-    handlefilterChange(value);
+   dispatch(setTodos(newTodos)); 
   };
 
   // for items left
   var trueCount = 0;
   var falseCount = 0;
-  filtertodos.forEach((i) => {
+  todos.forEach((i) => {
     i.isCompleted === true ? trueCount++ : falseCount++;
   });
 
@@ -59,16 +50,18 @@ function App() {
             fontSize: "100px",
             fontWeight: "400",
           }}
-        >
-
-          todos
+         > todos
         </h1>
       </div>
-      <div  class="card mx-auto shadow-lg"  style={{ width: "32%", backgroundColor: "#ffff" }} >
+
+      <div
+        class="card mx-auto shadow-lg"
+        style={{ width: "32%", backgroundColor: "#ffff" }}>
         <TodoForm />
-          <ul class="list-group list-group-flush">
-            <TodoList/>
+        <ul class="list-group list-group-flush">
+          <TodoList />
         </ul>
+
         <div className="d-flex justify-content-between ">
           <p
             className="my-3"
@@ -78,36 +71,31 @@ function App() {
               color: "#4d4d4d",
               fontFamily: "sans-serif",
             }}
-             >
-            {falseCount} items left{" "}
+          > {falseCount} items left
           </p>
           <div
             class="my-2 "
             onClick={(e) => handlefilterChange(e.target.value)}
-            style={{ marginRight: "-5%" }} >
+            style={{ marginRight: "-5%" }}
+          >
             <button
               value="All"
               className={value === "All" ? "active" : "btnn"}
               onClick={() => setvalue("All")}
-            >
-              {" "}
-              All{" "}
+            > All
             </button>
             <button
               value="Active"
               className={value === "Active" ? "active" : "btnn"}
               onClick={() => setvalue("Active")}
             >
-              {" "}
-              Active{" "}
+              Active
             </button>
             <button
               value="Completed"
               className={value === "Completed" ? "active" : "btnn"}
               onClick={() => setvalue("Completed")}
-            >
-              {" "}
-              Completed{" "}
+            > Completed
             </button>
           </div>
           <a
@@ -121,8 +109,8 @@ function App() {
               fontFamily: "sans-serif",
             }}
             onClick={clearCompletedTodo}
+            href
           >
-            {" "}
             Clear completed
           </a>
         </div>

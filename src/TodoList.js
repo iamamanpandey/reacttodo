@@ -26,7 +26,7 @@ const TodoList = () => {
            }}>
             <div className="w-100">
             <label class="container" style={{fontSize:'24px',color:'#4d4d4d',fontFamily:'sans-serif'}}>{todo.task}
-       <input type="checkbox"  class="checkmark" />
+            <input type="checkbox"checked={todo.isCompleted} onClick={()=>dispatch(completeTodo(todo.id))} class="checkmark" />
         <span class="checkmark"></span>
       </label></div>
             <button
@@ -41,7 +41,6 @@ const TodoList = () => {
         </ul>
         )})}
       </div>
-   
   );
 };
 
