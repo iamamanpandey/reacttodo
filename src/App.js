@@ -1,28 +1,22 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import {useSelector} from 'react-redux';
+import {setTodos} from './redux/todosSlice';
 import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      task: "learn react js",
-      isCompleted: false,
-    },
-  ]);
+  const {todos} = useSelector(state => state.todos)
+
 
   useEffect(() => {
     handlefilterChange(value);
-    console.log("useeffect", todos);
   }, [todos]);
+  
 
   const [filtertodos, setfilterTodos] = useState([...todos]);
   const [value, setvalue] = useState(" ");
 
-  const addTodo = (task) => {
-    const newTodos = [...todos, { task: task, isCompleted: false }];
-    setTodos(newTodos);
-  };
 
   const handlefilterChange = (val) => {
     
@@ -39,19 +33,6 @@ function App() {
       }
     });
     setfilterTodos(filtertodo);
-  };
-
-  const completeTodo = (id) => {
-    const newTodos = [...filtertodos];
-    newTodos[id].isCompleted = !newTodos[id].isCompleted;
-    setfilterTodos(newTodos);
-    handlefilterChange(value);
-  };
-
-  const removeTodo = (id) => {
-    const newTodos = filtertodos.filter((todo, index) => index !== id);
-    setTodos(newTodos);
-    setfilterTodos(newTodos);
   };
 
   const clearCompletedTodo = () => {
@@ -79,25 +60,14 @@ function App() {
             fontWeight: "400",
           }}
         >
-          {" "}
+
           todos
         </h1>
       </div>
-      <div
-        class="card mx-auto shadow-lg"
-        style={{ width: "32%", backgroundColor: "#ffff" }}
-      >
-        <TodoForm addTodo={addTodo} />
-        <ul class="list-group list-group-flush">
-          {filtertodos.map((todo, id) => (
-            <TodoList
-              key={id}
-              id={id}
-              completeTodo={completeTodo}
-              removeTodo={removeTodo}
-              todo={todo}
-            />
-          ))}
+      <div  class="card mx-auto shadow-lg"  style={{ width: "32%", backgroundColor: "#ffff" }} >
+        <TodoForm />
+          <ul class="list-group list-group-flush">
+            <TodoList/>
         </ul>
         <div className="d-flex justify-content-between ">
           <p
@@ -108,14 +78,13 @@ function App() {
               color: "#4d4d4d",
               fontFamily: "sans-serif",
             }}
-          >
+             >
             {falseCount} items left{" "}
           </p>
           <div
             class="my-2 "
             onClick={(e) => handlefilterChange(e.target.value)}
-            style={{ marginRight: "-5%" }}
-          >
+            style={{ marginRight: "-5%" }} >
             <button
               value="All"
               className={value === "All" ? "active" : "btnn"}
