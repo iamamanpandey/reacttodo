@@ -113,7 +113,7 @@ function App() {
               Completed{" "}
             </button>
           </div>
-          <button
+          <a
             class="nav-item nav-link btn1"
             style={{
               marginLeft: "1%",
@@ -126,7 +126,7 @@ function App() {
             onClick={clearcompletedTodo}
           
           > Clear completed
-          </button>
+          </a>
         </div>
       </div>
     </div>
