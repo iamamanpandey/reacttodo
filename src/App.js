@@ -49,22 +49,10 @@ function App() {
 
   return (
     <div className="App mx-auto">
-      <div className="text-center " style={{ marginTop: "3%" }}>
-        <h1
-          style={{
-            color: "#EBDBDB",
-            fontFamilyL: "Helvetica",
-            fontSize: "100px",
-            fontWeight: "400",
-          }}
-        >
-          todos
-        </h1>
+      <div className="text-center" >
+        <h1 className="heading">todos </h1>
       </div>
-      <div
-        class="card mx-auto shadow-lg"
-        style={{ width: "32%", backgroundColor: "#ffff" }}
-      >
+      <div  class="card mx-auto shadow-lg">
         <TodoForm />
         <ul class="list-group list-group-flush">
           {filtertodos.map((todo) => (
@@ -75,58 +63,27 @@ function App() {
           ))}
         </ul>
         <div className="d-flex justify-content-between ">
-          <p
-            className="my-3"
-            style={{
-              marginLeft: "3%",
-              fontSize: "14px",
-              color: "#4d4d4d",
-              fontFamily: "sans-serif",
-            }}
-          >
-            {falseCount} items left{" "}
-          </p>
-          <div
-            class="my-2 "
-            onClick={(e) => handlefilterChange(e.target.value)}
-            style={{ marginRight: "-5%" }}
-          >
+          <p className="my-3 false">{falseCount} items left </p>
+          <div  class="my-2 filter" onClick={(e) => handlefilterChange(e.target.value)}>
             <button
               value="All"
               className={value === "All" ? "active" : "btnn"}
               onClick={() => setvalue("All")}
-            >
-              All{" "}
+            > All
             </button>
             <button
               value="Active"
               className={value === "Active" ? "active" : "btnn"}
               onClick={() => setvalue("Active")}
-            >
-              Active{" "}
+             > Active
             </button>
             <button
               value="Completed"
               className={value === "Completed" ? "active" : "btnn"}
               onClick={() => setvalue("Completed")}
-            >
-              Completed{" "}
-            </button>
+            > Completed </button>
           </div>
-          <a
-            class="nav-item nav-link btn1"
-            style={{
-              marginLeft: "1%",
-              marginRight: "1%",
-              marginTop: "1%",
-              fontSize: "14px",
-              color: "#4d4d4d",
-              fontFamily: "sans-serif",
-            }}
-            onClick={clearcompletedTodo}
-          
-          > Clear completed
-          </a>
+          <a class="nav-item nav-link btn1"   onClick={clearcompletedTodo}> Clear completed</a>
         </div>
       </div>
     </div>
