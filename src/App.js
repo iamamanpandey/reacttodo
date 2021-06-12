@@ -4,6 +4,7 @@ import TodoForm from "./components/TodoForm";
 import { useSelector,useDispatch } from "react-redux";
 import "./App.css";
 import { clearCompletedTodo } from "./redux/todosSlice";
+import Button from './components/Button';
 
 function App() {
 
@@ -65,25 +66,26 @@ function App() {
         <div className="d-flex justify-content-between ">
           <p className="my-3 false">{falseCount} items left </p>
           <div  class="my-2 filter" onClick={(e) => handlefilterChange(e.target.value)}>
-            <button
+            <Button
               value="All"
               className={value === "All" ? "active" : "btnn"}
               onClick={() => setvalue("All")}
-            > All
-            </button>
-            <button
+             > All
+            </Button>
+            <Button
               value="Active"
               className={value === "Active" ? "active" : "btnn"}
               onClick={() => setvalue("Active")}
              > Active
-            </button>
-            <button
+            </Button>
+            <Button
               value="Completed"
               className={value === "Completed" ? "active" : "btnn"}
               onClick={() => setvalue("Completed")}
-            > Completed </button>
+            > Completed 
+            </Button>
           </div>
-          <a class="nav-item nav-link btn1"   onClick={clearcompletedTodo}> Clear completed</a>
+          <a class="nav-item nav-link btn1" onClick={clearcompletedTodo} >Clear completed</a>
         </div>
       </div>
     </div>
